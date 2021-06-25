@@ -2,14 +2,31 @@ package be.digitalcity.formation.jeu.personnage;
 
 import be.digitalcity.formation.jeu.De;
 
+import java.util.Arrays;
+
 public abstract class Personnage {
-    private int force;
-    private int endurance;
+    private final int force;
+    private final int endurance;
     protected int pv;
 
     // Déclaration stats de bases
     public Personnage(){
+        int[] stats1 = new int[4];
 
+        for (int i = 0; i < 4; i++) {
+            stats1[i] = De.lancerDe(6);
+        }
+        Arrays.sort(stats1);
+        this.force = stats1[3] + stats1[2] + stats1[1];
+
+        int[] stats2 = new int[4];
+        for (int i = 0; i < 4; i++) {
+            stats2[i] = De.lancerDe(6);
+        }
+        Arrays.sort(stats2);
+        this.endurance = stats2[3] + stats2[2] + stats2[1];
+
+        this.pv = this.getEndurance() + modificateur(this.getEndurance());
     }
 
     public int getForce() {
@@ -25,13 +42,12 @@ public abstract class Personnage {
     }
 
     public void setPv(int pv) {
-        this.pv = pv;
+        this.pv -= pv;
     }
 
-    public int frappe(){
-        // Dmg = Lancé dé 4 face + modificateur basé sur force
-        int damage = De.lancerDe(4) + modificateur(this.force);
-        return damage;
+    public void frappe(Personnage personnage){
+        int dmg = De.lancerDe(4) + modificateur(this.getForce());
+        personnage.setPv(dmg);
     }
 
     // Modificateur basé sur un stat

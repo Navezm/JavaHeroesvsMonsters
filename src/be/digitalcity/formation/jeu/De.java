@@ -1,8 +1,6 @@
 package be.digitalcity.formation.jeu;
 
 public class De {
-    public int result;
-
     public static int lancerDe(int face){
         int resultat = 0;
         switch (face) {
