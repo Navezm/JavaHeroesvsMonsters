@@ -1,6 +1,6 @@
-package be.digitalcity.formation.jeu;
+package be.digitalcity.formation.jeu.utilitaire;
 
-public class De {
+public final class De {
     public static int lancerDe(int face){
         int resultat = 0;
         switch (face) {

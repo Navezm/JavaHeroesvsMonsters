@@ -1,6 +1,6 @@
 package be.digitalcity.formation.jeu.personnage.monstres;
 
-import be.digitalcity.formation.jeu.De;
+import be.digitalcity.formation.jeu.utilitaire.De;
 import be.digitalcity.formation.jeu.personnage.Personnage;
 
 public class Orque extends Personnage {

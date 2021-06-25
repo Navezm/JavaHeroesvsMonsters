@@ -1,6 +1,6 @@
 package be.digitalcity.formation.jeu.personnage;
 
-import be.digitalcity.formation.jeu.De;
+import be.digitalcity.formation.jeu.utilitaire.De;
 
 import java.util.Arrays;
 
@@ -48,6 +48,7 @@ public abstract class Personnage {
     public void frappe(Personnage personnage){
         int dmg = De.lancerDe(4) + modificateur(this.getForce());
         personnage.setPv(dmg);
+        System.out.printf("%s reçoit %d dommages\nIl lui reste %d PV", personnage.getClass().getName(), dmg, personnage.getPv());
     }
 
     // Modificateur basé sur un stat
@@ -62,4 +63,5 @@ public abstract class Personnage {
         }
         return modificateur;
     }
+
 }
