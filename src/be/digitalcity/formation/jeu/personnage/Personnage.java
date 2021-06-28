@@ -8,6 +8,8 @@ public abstract class Personnage {
     private final int force;
     private final int endurance;
     protected int pv;
+    protected int X;
+    protected int Y;
 
     // Déclaration stats de bases
     public Personnage(){
@@ -48,7 +50,7 @@ public abstract class Personnage {
     public void frappe(Personnage personnage){
         int dmg = De.lancerDe(4) + modificateur(this.getForce());
         personnage.setPv(dmg);
-        System.out.printf("%s reçoit %d dommages\nIl lui reste %d PV", personnage.getClass().getName(), dmg, personnage.getPv());
+        System.out.printf("%s reçoit %d dommages\nIl lui reste %d PV\n", personnage.getClass().getSimpleName(), dmg, personnage.getPv());
     }
 
     // Modificateur basé sur un stat
@@ -63,5 +65,6 @@ public abstract class Personnage {
         }
         return modificateur;
     }
+
 
 }
