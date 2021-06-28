@@ -1,11 +1,13 @@
 package be.digitalcity.formation.jeu.personnage.heros;
 
 import be.digitalcity.formation.jeu.personnage.Personnage;
-import be.digitalcity.formation.jeu.personnage.monstres.Monstre;
+import be.digitalcity.formation.jeu.personnage.monstres.Dragonnet;
+import be.digitalcity.formation.jeu.personnage.monstres.Loup;
+import be.digitalcity.formation.jeu.personnage.monstres.Orque;
+import be.digitalcity.formation.jeu.utilitaire.Cuir;
 import be.digitalcity.formation.jeu.utilitaire.Loots;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public abstract class Heros extends Personnage implements Loots {
@@ -17,18 +19,18 @@ public abstract class Heros extends Personnage implements Loots {
         System.out.printf("Ton héro s'est reposé il est maintenant full PV !\n");
     }
 
-    public void ramasserLoot(Monstre monstre){
-        if (monstre.getClass().getSimpleName().equals("Loup")){
-            sacADos.add(monstre.getCuir());
-            System.out.println("Bravo tu as récupéré " + monstre.getCuir() + " cuir !");
-        } else if (monstre.getClass().getSimpleName().equals("Orque")){
-            sacADos.add(monstre.getOr());
-            System.out.println("Bravo tu as récupéré " + monstre.getOr() + " or !");
+    public void ramasserLoot(Personnage monstre){
+        if (monstre instanceof Loup){
+            sacADos.add(((Cuir)monstre));
+            System.out.println("Bravo tu as récupéré " + (Loup)monstre.getCuir() + " cuir !");
+        } else if (monstre instanceof Orque){
+            sacADos.add((Orque)monstre.getOr());
+            System.out.println("Bravo tu as récupéré " + (Orque)monstre.getOr() + " or !");
         } else {
-            sacADos.add(monstre.getOr());
-            sacADos.add(monstre.getCuir());
-            System.out.println("Bravo tu as récupéré " + monstre.getOr() + " or !");
-            System.out.println("Bravo tu as récupéré " + monstre.getCuir() + " cuir !");
+            sacADos.add((Dragonnet)monstre.getOr());
+            sacADos.add((Dragonnet)monstre.getCuir());
+            System.out.println("Bravo tu as récupéré " + (Dragonnet)monstre.getOr() + " or !");
+            System.out.println("Bravo tu as récupéré " + (Dragonnet)monstre.getCuir() + " cuir !");
         }
     }
 
