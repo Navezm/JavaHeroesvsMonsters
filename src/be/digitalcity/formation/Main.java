@@ -18,19 +18,22 @@ public class Main {
         System.out.println("Dragonnet "+dragonnet.getPv());
 
 
-//        Jeu.combat(nain, dragonnet);
-//        System.out.println(nain.getPv());
-//
-//        nain.rest();
-//
-//        Jeu.combat(nain, loup);
-//        System.out.println(nain.getPv());
-//
-//        nain.rest();
-//
-//        Jeu.combat(nain, orque);
-//        System.out.println(nain.getPv());
+        System.out.println("Or : "+dragonnet.getOr()+" Cuir :"+dragonnet.getCuir());
+        Jeu.combat(nain, dragonnet);
+        System.out.println(nain.getPv());
 
-        System.out.println(dragonnet.getOr()+ " " + dragonnet.getCuir());
+        nain.rest();
+
+        Jeu.combat(nain, loup);
+        System.out.println(nain.getPv());
+
+        nain.rest();
+
+        Jeu.combat(nain, orque);
+        System.out.println(nain.getPv());
+
+//        System.out.println(dragonnet.getOr()+ " " + dragonnet.getCuir());
+
+        System.out.println(nain.sacADos);
     }
 }

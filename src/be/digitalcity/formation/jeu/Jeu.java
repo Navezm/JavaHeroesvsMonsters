@@ -2,6 +2,7 @@ package be.digitalcity.formation.jeu;
 
 import be.digitalcity.formation.jeu.personnage.Personnage;
 import be.digitalcity.formation.jeu.personnage.heros.Heros;
+import be.digitalcity.formation.jeu.personnage.monstres.Monstre;
 
 public class Jeu {
     public static void lancerJeu(){
@@ -12,13 +13,13 @@ public class Jeu {
 
     }
 
-    public static void combat(Heros heros, Personnage monstre){
+    public static void combat(Heros heros, Monstre monstre){
         do {
             heros.frappe(monstre);
             if (monstre.getPv() < 0) {
                 System.out.printf("Bravo vous avez battu un %s ! Vous récupérez ses biens et continuer votre chemin\n\n",monstre.getClass().getSimpleName());
 
-                // Ajouter ici le fait de récup l'or ou le cuir
+                heros.ramasserLoot(monstre);
 
                 heros.rest();
             } else {

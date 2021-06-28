@@ -50,7 +50,7 @@ public abstract class Personnage {
     public void frappe(Personnage personnage){
         int dmg = De.lancerDe(4) + modificateur(this.getForce());
         personnage.setPv(dmg);
-        System.out.printf("%s reçoit %d dommages\nIl lui reste %d PV\n", personnage.getClass().getSimpleName(), dmg, personnage.getPv());
+        System.out.printf("%s reçoit %d dommages\nIl lui reste %d PV\n", personnage.getClass().getSimpleName(), dmg, personnage.getPv() < 0 ? 0 : personnage.getPv());
     }
 
     // Modificateur basé sur un stat
@@ -58,7 +58,7 @@ public abstract class Personnage {
         int modificateur = 0;
         if (stat < 5){
             modificateur -= 1;
-        } else if (stat > 10 && stat < 15) {
+        } else if (stat >= 10 && stat <= 15) {
             modificateur += 1;
         } else if (stat > 15){
             modificateur += 2;
