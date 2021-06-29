@@ -11,8 +11,8 @@ public class Plateau {
     Random rand = new Random();
 
     public void creationPlateau(){
-        for (int i = 0; i < ; i++) {
-
-        }
+//        for (int i = 0; i < ; i++) {
+//
+//        }
     }
 }
