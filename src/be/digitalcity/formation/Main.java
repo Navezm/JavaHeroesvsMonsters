@@ -10,9 +10,9 @@ public class Main {
 
     public static void main(String[] args) {
         Nain nain = new Nain();
-        Dragonnet dragonnet = new Dragonnet();
-        Loup loup = new Loup();
-        Orque orque = new Orque();
+        Dragonnet dragonnet = new Dragonnet(4,5);
+        Loup loup = new Loup(4,3);
+        Orque orque = new Orque(8,1);
 
         System.out.println("Nain pv :"+nain.getPv() + " endurance : "+nain.getEndurance());
         System.out.println("Dragonnet "+dragonnet.getPv());
@@ -34,6 +34,6 @@ public class Main {
 
 //        System.out.println(dragonnet.getOr()+ " " + dragonnet.getCuir());
 
-        System.out.println(nain.sacADos);
+        System.out.println(nain.getSacADos());
     }
 }

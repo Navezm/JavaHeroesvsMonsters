@@ -11,4 +11,9 @@ public class Loup extends Personnage implements Cuir{
     public int getCuir() {
         return this.cuir;
     }
+
+    public Loup(int X, int Y) {
+        this.X = X;
+        this.Y = Y;
+    }
 }

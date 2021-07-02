@@ -16,4 +16,9 @@ public class Orque extends Personnage implements Or {
     public int getOr() {
         return this.or;
     }
+
+    public Orque(int X, int Y) {
+        this.X = X;
+        this.Y = Y;
+    }
 }

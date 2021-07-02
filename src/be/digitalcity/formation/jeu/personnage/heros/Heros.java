@@ -13,7 +13,16 @@ import java.util.List;
 
 public abstract class Heros extends Personnage implements Loots {
 
-    public List<Loots> sacADos = new ArrayList<>();
+    private List<Loots> sacADos = new ArrayList<>();
+
+    public List<Loots> getSacADos() {
+//        switch (loot) {
+//            case "Cuir":
+//                sacADos.stream()
+//                        .reduce(Cuir)
+//        }
+        return sacADos;
+    }
 
     public void rest() {
         this.pv = this.getEndurance() + modificateur(this.getEndurance());

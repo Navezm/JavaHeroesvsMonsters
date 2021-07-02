@@ -23,4 +23,9 @@ public class Dragonnet extends Personnage implements Or, Cuir {
     public int getCuir() {
         return this.cuir;
     }
+
+    public Dragonnet(int X, int Y) {
+        this.X = X;
+        this.Y = Y;
+    }
 }
