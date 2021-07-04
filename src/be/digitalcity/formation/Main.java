@@ -39,5 +39,6 @@ public class Main {
 
         Plateau plateau = new Plateau();
         plateau.creationPlateau();
+        plateau.getMonstre().stream().forEach(x -> System.out.println(x));
     }
 }

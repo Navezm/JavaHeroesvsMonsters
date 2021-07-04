@@ -5,11 +5,23 @@ import be.digitalcity.formation.jeu.personnage.monstres.Dragonnet;
 import be.digitalcity.formation.jeu.personnage.monstres.Loup;
 import be.digitalcity.formation.jeu.personnage.monstres.Orque;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Plateau {
 
     public Personnage[][] plateau = new Personnage[15][15];
+
+    public List<Personnage> monstre = new ArrayList<>();
+
+    public Personnage[][] getPlateau() {
+        return plateau;
+    }
+
+    public List<Personnage> getMonstre() {
+        return monstre;
+    }
 
     Random rand = new Random();
 
@@ -25,17 +37,20 @@ public class Plateau {
                     case 1:
                         Personnage monstreD = new Dragonnet(X,Y);
                         plateau[X][Y] = monstreD;
+                        this.monstre.add(monstreD);
                         System.out.println("Dragonnet ajouté en position : "+X+" "+Y);
                         break;
                     case 2:
                         Personnage monstreL = new Loup(X,Y);
                         plateau[X][Y] = monstreL;
+                        this.monstre.add(monstreL);
                         System.out.println("Loup ajouté en position : "+X+" "+Y);
 
                         break;
                     case 3:
                         Personnage monstreO = new Orque(X,Y);
                         plateau[X][Y] = monstreO;
+                        this.monstre.add(monstreO);
                         System.out.println("Orque ajouté en position : "+X+" "+Y);
                         break;
                 }
@@ -53,13 +68,20 @@ public class Plateau {
                     (plateau[x - 1][y] == null && plateau[x - 2][y] == null) &&
                     (plateau[x][y + 1] == null && plateau[x][y + 2] == null) &&
                     (plateau[x][y - 1] == null && plateau[x][y - 2] == null)){
-                monsterNearby = false;
-            } else {
                 monsterNearby = true;
+            } else {
+                monsterNearby = false;
             }
-        } else {
-
+        } else if ((x - 1 >= 0 && y - 1 >= 0) && (x + 1 <= 14 && y + 1 <= 14)) {
+            if (plateau[x + 1][y] == null && plateau[x - 1][y] == null && plateau[x][y + 1] == null && plateau[x][y - 1] == null) {
+                monsterNearby = true;
+            } else {
+                monsterNearby = false;
+            }
         }
+//        } else if (x == 0) {
+//
+//        }
 //        (plateau[x + 1][y] == null && plateau[x + 2][y] == null) && (plateau[x - 1][y] == null && plateau[x - 2][y] == null) && (plateau[x][y + 1] == null && plateau[x][y + 2] == null) && (plateau[x][y - 1] == null && plateau[x][y - 2] == null);
         return monsterNearby;
     }
