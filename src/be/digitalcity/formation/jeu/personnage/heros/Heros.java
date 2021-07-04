@@ -10,10 +10,14 @@ import be.digitalcity.formation.jeu.utilitaire.Or;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Heros extends Personnage implements Loots {
 
     private List<Loots> sacADos = new ArrayList<>();
+
+    public Heros() {
+    }
 
     public List<Loots> getSacADos() {
 //        switch (loot) {
@@ -44,4 +48,27 @@ public abstract class Heros extends Personnage implements Loots {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Heros heros = (Heros) o;
+        return Objects.equals(sacADos, heros.sacADos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), sacADos);
+    }
+
+    @Override
+    public String toString() {
+        return "Heros{" +
+                "pv=" + pv +
+                ", X=" + X +
+                ", Y=" + Y +
+                ", sacADos=" + sacADos +
+                '}';
+    }
 }

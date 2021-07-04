@@ -48,6 +48,8 @@ public class Dragonnet extends Personnage implements Or, Cuir {
     public String toString() {
         return "Dragonnet{" +
                 "pv=" + pv +
+                ", force=" + getForce() +
+                ", endurance=" + getEndurance() +
                 ", X=" + X +
                 ", Y=" + Y +
                 ", or=" + or +

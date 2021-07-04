@@ -36,6 +36,8 @@ public class Loup extends Personnage implements Cuir{
     public String toString() {
         return "Loup{" +
                 "pv=" + pv +
+                ", force=" + getForce() +
+                ", endurance=" + getEndurance() +
                 ", X=" + X +
                 ", Y=" + Y +
                 ", cuir=" + cuir +

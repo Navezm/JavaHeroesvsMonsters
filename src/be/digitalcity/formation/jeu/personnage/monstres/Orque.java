@@ -41,6 +41,8 @@ public class Orque extends Personnage implements Or {
     public String toString() {
         return "Orque{" +
                 "pv=" + pv +
+                ", force=" + getForce() +
+                ", endurance=" + getEndurance() +
                 ", X=" + X +
                 ", Y=" + Y +
                 ", or=" + or +

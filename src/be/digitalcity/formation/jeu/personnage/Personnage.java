@@ -3,6 +3,7 @@ package be.digitalcity.formation.jeu.personnage;
 import be.digitalcity.formation.jeu.utilitaire.De;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public abstract class Personnage {
     private final int force;
@@ -89,5 +90,27 @@ public abstract class Personnage {
         return modificateur;
     }
 
+    @Override
+    public String toString() {
+        return "Personnage{" +
+                "force=" + force +
+                ", endurance=" + endurance +
+                ", pv=" + pv +
+                ", X=" + X +
+                ", Y=" + Y +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Personnage that = (Personnage) o;
+        return force == that.force && endurance == that.endurance && pv == that.pv && X == that.X && Y == that.Y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(force, endurance, pv, X, Y);
+    }
 }
