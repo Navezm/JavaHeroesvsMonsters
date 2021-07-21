@@ -11,8 +11,11 @@ import be.digitalcity.formation.jeu.utilitaire.Or;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
 public abstract class Heros extends Personnage implements Loots {
+
+    Scanner scan = new Scanner(System.in);
 
     private List<Loots> sacADos = new ArrayList<>();
 
@@ -46,6 +49,52 @@ public abstract class Heros extends Personnage implements Loots {
             System.out.println("Bravo tu as récupéré " + ((Or)monstre).getOr() + " or !");
             System.out.println("Bravo tu as récupéré " + ((Cuir)monstre).getCuir() + " cuir !");
         }
+    }
+
+    public boolean seDeplacer(){
+        boolean success = false;
+        System.out.println("Par où veux tu te déplacer ? (H = haut, B = bas, D = droite, G = gauche");
+        String deplacement = scan.next();
+        switch (deplacement) {
+            case "H":
+                if (this.getX() > 0) {
+                    this.setX(-1);
+                    success = true;
+                } else {
+                    System.out.println("Cette action n'est pas possible");
+                    success = false;
+                }
+                break;
+            case "B":
+                if (this.getX() < 14) {
+                    this.setX(1);
+                    success = true;
+                } else {
+                    System.out.println("Cette action n'est pas possible");
+                    success = false;
+                }
+                break;
+            case "G":
+                if (this.getY() > 0) {
+                    this.setY(-1);
+                    success = true;
+                } else {
+                    System.out.println("Cette action n'est pas possible");
+                    success = false;
+                }
+                break;
+            case "D":
+                if (this.getY() < 14) {
+                    this.setY(1);
+                    success = true;
+                } else {
+                    System.out.println("Cette action n'est pas possible");
+                    success = false;
+                }
+                break;
+        }
+        this.getPosition();
+        return success;
     }
 
     @Override

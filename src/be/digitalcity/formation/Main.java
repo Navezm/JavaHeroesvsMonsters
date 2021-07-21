@@ -33,7 +33,7 @@ public class Main {
 //        Jeu.combat(nain, orque);
 //        System.out.println(nain.getPv());
 //
-////        System.out.println(dragonnet.getOr()+ " " + dragonnet.getCuir());
+//        System.out.println(dragonnet.getOr()+ " " + dragonnet.getCuir());
 //
 //        System.out.println(nain.getSacADos());
 

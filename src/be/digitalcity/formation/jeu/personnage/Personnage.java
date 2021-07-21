@@ -44,7 +44,7 @@ public abstract class Personnage {
     }
 
     public void setX(int x) {
-        X = x;
+        X += x;
     }
 
     public int getY() {
@@ -52,7 +52,7 @@ public abstract class Personnage {
     }
 
     public void setY(int y) {
-        Y = y;
+        Y += y;
     }
 
     public int getForce() {
