@@ -37,8 +37,9 @@ public class Main {
 //
 //        System.out.println(nain.getSacADos());
 
-        Plateau plateau = new Plateau();
-        plateau.creationPlateau();
-        plateau.getMonstre().stream().forEach(x -> System.out.println(x));
+
+//        Plateau plateau = new Plateau();
+//        plateau.creationPlateau();
+//        plateau.getMonstre().stream().forEach(x -> System.out.println(x));
     }
 }
