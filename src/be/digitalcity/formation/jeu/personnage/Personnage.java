@@ -47,6 +47,14 @@ public abstract class Personnage {
         this.pv -= pv;
     }
 
+    public int getX() {
+        return this.X;
+    }
+
+    public int getY() {
+        return this.Y;
+    }
+
     public void frappe(Personnage personnage){
         int dmg = De.lancerDe(4) + modificateur(this.getForce());
         personnage.setPv(dmg);

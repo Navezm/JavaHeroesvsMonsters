@@ -36,4 +36,8 @@ public class Plateau {
             }
         }
     }
+
+    public void enleverMonstre(int X, int Y) {
+        plateau[X][Y] = null;
+    }
 }
