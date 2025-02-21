@@ -12,13 +12,13 @@ public class Jeu {
     Scanner scanner = new Scanner(System.in);
     static Plateau plateau = new Plateau();
     Heros heros;
-    public void lancerJeu(){
+    public void lancerJeu() {
         this.heros = creationPersonnage();
         plateau.creationPlateau();
         do {
-//            La fonction du jeu
-        } while(plateau.plateau.length != 0 && heros.getPv() != 0);
-
+            deplacement();
+            collisionMonstre();
+        } while(plateau.plateau.length != 0 && heros.getPv() > 0);
     }
 
     private Heros creationPersonnage() {
@@ -43,10 +43,94 @@ public class Jeu {
     }
 
     private void deplacement() {
-
+        System.out.println("Dans quel sens souhaitez vous vous déplacer ?");
+        System.out.println("Haut : H, Bas : B, Gauche : G, Droite : D\n");
+        String direction = scanner.next();
+        switch (direction) {
+            case "D" :
+                if (heros.getX() == 14) {
+                    System.out.println("Vous ne pouvez plus aller à droite");
+                } else {
+                    heros.setX(heros.getX() + 1);
+                }
+                break;
+            case "G" :
+                if (heros.getX() == 0) {
+                    System.out.println("Vous ne pouvez plus aller à gauche");
+                } else {
+                    heros.setX(heros.getX() - 1);
+                }
+                break;
+            case "H" :
+                if (heros.getY() == 0) {
+                    System.out.println("Vous ne pouvez plus aller en haut");
+                } else {
+                    heros.setY(heros.getY() - 1);
+                }
+                break;
+            case "B" :
+                if (heros.getY() == 14) {
+                    System.out.println("Vous ne pouvez plus aller en bas");
+                } else {
+                    heros.setY(heros.getY() + 1);
+                }
+                break;
+            default :
+                System.out.println("Veuillez entrer une direction correcte");
+        }
+        System.out.printf("Vous êtes maintenant en X : %d Y : %d\n\n", heros.getX(), heros.getY());
     }
 
-    public static void combat(Heros heros, Personnage monstre){
+    private void collisionMonstre() {
+        int X = heros.getX();
+        int Y = heros.getY();
+        if (X > 0) {
+            if (plateau.plateau[X-1][Y] != null) {
+                System.out.println("Un monstre apparait ! Vous devez vous battre");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                combat(this.heros, plateau.plateau[X-1][Y]);
+            }
+        }
+        if (X < 14) {
+            if (plateau.plateau[X+1][Y] != null) {
+                System.out.println("Un monstre apparait ! Vous devez vous battre");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                combat(this.heros, plateau.plateau[X+1][Y]);
+            }
+        }
+        if (Y > 0) {
+            if (plateau.plateau[X][Y-1] != null) {
+                System.out.println("Un monstre apparait ! Vous devez vous battre");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                combat(this.heros, plateau.plateau[X][Y-1]);
+            }
+        }
+        if (Y < 14) {
+            if (plateau.plateau[X][Y+1] != null) {
+                System.out.println("Un monstre apparait ! Vous devez vous battre");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                combat(this.heros, plateau.plateau[X][Y+1]);
+            }
+        }
+    }
+
+    public static void combat(Heros heros, Personnage monstre) {
         do {
             heros.frappe(monstre);
             if (monstre.getPv() <= 0) {
@@ -60,11 +144,16 @@ public class Jeu {
                 monstre.frappe(heros);
             }
         } while(monstre.getPv() > 0 && heros.getPv() > 0);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         if (monstre.getPv() <= 0) {
             plateau.enleverMonstre(monstre.getX(), monstre.getY());
         }
         if (heros.getPv() <= 0){
-            System.out.print("Ton héro est mort tu peux recommencer une partie !\n\n");
+            System.out.print("Votre héro est mort vous pouvez recommencer une partie !\n\n");
         }
     }
 }

@@ -12,10 +12,19 @@ public class Plateau {
     Random rand = new Random();
 
     public void creationPlateau() {
-        for (int i = 0; i < 1 + (int)(Math.random() * ((13 - 10) + 1)); i++) {
-            int X = rand.nextInt(15);
-            int Y = rand.nextInt(15);
-            if (plateau[X][Y] == null) {
+        for (int i = 0; i < 12; i++) {
+            int X = rand.nextInt(13) + 2;
+            int Y = rand.nextInt(13) + 2;
+            if (plateau[X][Y] == null
+//                    plateau[X+1][Y] == null &&
+//                    plateau[X+2][Y] == null &&
+//                    plateau[X-1][Y] == null &&
+//                    plateau[X-2][Y] == null &&
+//                    plateau[X][Y+1] == null &&
+//                    plateau[X][Y+2] == null &&
+//                    plateau[X][Y-1] == null &&
+//                    plateau[X][Y-2] == null
+            ) {
                 int monstreAleatoire = rand.nextInt(4);
                 switch (monstreAleatoire) {
                     case 1:
@@ -32,9 +41,10 @@ public class Plateau {
                         break;
                 }
             } else {
-                i --;
+                i = i - 1;
             }
         }
+        System.out.println("Le plateau est créé");
     }
 
     public void enleverMonstre(int X, int Y) {

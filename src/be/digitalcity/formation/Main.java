@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Jeu jeu = new Jeu();
         jeu.lancerJeu();
+
 //        Nain nain = new Nain();
 //        Dragonnet dragonnet = new Dragonnet(4,5);
 //        Loup loup = new Loup(4,3);

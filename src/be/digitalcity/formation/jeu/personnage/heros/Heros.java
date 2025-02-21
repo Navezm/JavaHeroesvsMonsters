@@ -10,6 +10,11 @@ import java.util.List;
 
 public abstract class Heros extends Personnage implements Loots {
 
+    Heros() {
+        this.X = 0;
+        this.Y = 0;
+    }
+
     private final List<Loots> sacADos = new ArrayList<>();
 
     public void getContenuSacADos() {

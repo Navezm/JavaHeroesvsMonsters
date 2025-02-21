@@ -55,6 +55,14 @@ public abstract class Personnage {
         return this.Y;
     }
 
+    public void setX(int i) {
+        this.X = i;
+    }
+
+    public void setY(int i) {
+        this.Y = i;
+    }
+
     public void frappe(Personnage personnage){
         int dmg = De.lancerDe(4) + modificateur(this.getForce());
         personnage.setPv(dmg);
