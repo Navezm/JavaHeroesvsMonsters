@@ -13,6 +13,7 @@ public abstract class Heros extends Personnage implements Loots {
     Heros() {
         this.X = 0;
         this.Y = 0;
+        this.pv = 200;
     }
 
     private final List<Loots> sacADos = new ArrayList<>();
@@ -31,7 +32,8 @@ public abstract class Heros extends Personnage implements Loots {
     }
 
     public void rest() {
-        this.pv = this.getEndurance() + modificateur(this.getEndurance());
+//        this.pv = this.getEndurance() + modificateur(this.getEndurance());
+        this.pv = 200;
         System.out.printf("Ton héro s'est reposé il a maintenant %d PV !\n", this.pv);
     }
 

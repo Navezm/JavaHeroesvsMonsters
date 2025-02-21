@@ -6,6 +6,7 @@ import be.digitalcity.formation.jeu.personnage.heros.Humain;
 import be.digitalcity.formation.jeu.personnage.heros.Nain;
 import be.digitalcity.formation.jeu.utilitaire.Plateau;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Jeu {
@@ -13,12 +14,16 @@ public class Jeu {
     static Plateau plateau = new Plateau();
     Heros heros;
     public void lancerJeu() {
-        this.heros = creationPersonnage();
-        plateau.creationPlateau();
+        heros = creationPersonnage();
+        plateau.creationPlateau(heros);
         do {
+            plateau.afficherPlateau();
             deplacement();
             collisionMonstre();
-        } while(plateau.plateau.length != 0 && heros.getPv() > 0);
+        } while(plateau.getNombreMonstre() > 0 && heros.getPv() > 0);
+        System.out.println("Félicitations vous avez tués tous les monstres du donjon !");
+        System.out.println("Vous finissez votre aventure avec brio !");
+        heros.getContenuSacADos();
     }
 
     private Heros creationPersonnage() {
@@ -47,32 +52,40 @@ public class Jeu {
         System.out.println("Haut : H, Bas : B, Gauche : G, Droite : D\n");
         String direction = scanner.next();
         switch (direction) {
-            case "D" :
+            case "B" :
                 if (heros.getX() == 14) {
                     System.out.println("Vous ne pouvez plus aller à droite");
                 } else {
+                    plateau.enleverMonstre(heros.getX(), heros.getY());
                     heros.setX(heros.getX() + 1);
-                }
-                break;
-            case "G" :
-                if (heros.getX() == 0) {
-                    System.out.println("Vous ne pouvez plus aller à gauche");
-                } else {
-                    heros.setX(heros.getX() - 1);
+                    plateau.plateau[heros.getX()][heros.getY()] = heros;
                 }
                 break;
             case "H" :
+                if (heros.getX() == 0) {
+                    System.out.println("Vous ne pouvez plus aller à gauche");
+                } else {
+                    plateau.enleverMonstre(heros.getX(), heros.getY());
+                    heros.setX(heros.getX() - 1);
+                    plateau.plateau[heros.getX()][heros.getY()] = heros;
+                }
+                break;
+            case "G" :
                 if (heros.getY() == 0) {
                     System.out.println("Vous ne pouvez plus aller en haut");
                 } else {
+                    plateau.enleverMonstre(heros.getX(), heros.getY());
                     heros.setY(heros.getY() - 1);
+                    plateau.plateau[heros.getX()][heros.getY()] = heros;
                 }
                 break;
-            case "B" :
+            case "D" :
                 if (heros.getY() == 14) {
                     System.out.println("Vous ne pouvez plus aller en bas");
                 } else {
+                    plateau.enleverMonstre(heros.getX(), heros.getY());
                     heros.setY(heros.getY() + 1);
+                    plateau.plateau[heros.getX()][heros.getY()] = heros;
                 }
                 break;
             default :
@@ -134,7 +147,9 @@ public class Jeu {
         do {
             heros.frappe(monstre);
             if (monstre.getPv() <= 0) {
-                System.out.printf("Bravo vous avez battu un %s ! Vous récupérez ses biens et continuer votre chemin\n\n",monstre.getClass().getSimpleName());
+                System.out.printf("Bravo vous avez battu un %s ! Vous récupérez ses biens et continuer votre chemin\n\n",
+                        monstre.getClass().getSimpleName()
+                );
 
                 heros.ramasserLoot(monstre);
                 heros.getContenuSacADos();
@@ -151,6 +166,7 @@ public class Jeu {
         }
         if (monstre.getPv() <= 0) {
             plateau.enleverMonstre(monstre.getX(), monstre.getY());
+            plateau.retirerUnMonstre();
         }
         if (heros.getPv() <= 0){
             System.out.print("Votre héro est mort vous pouvez recommencer une partie !\n\n");
