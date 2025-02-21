@@ -18,7 +18,8 @@ public class Jeu {
             if (monstre.getPv() <= 0) {
                 System.out.printf("Bravo vous avez battu un %s ! Vous récupérez ses biens et continuer votre chemin\n\n",monstre.getClass().getSimpleName());
 
-                heros.ramasserLoot(monstre); // Refaire le loot parce que fonctionne pas
+                heros.ramasserLoot(monstre);
+                heros.getContenuSacADos();
 
                 heros.rest();
             } else {
@@ -26,7 +27,7 @@ public class Jeu {
             }
         } while(monstre.getPv() > 0 && heros.getPv() > 0);
         if (heros.getPv() <= 0){
-            System.out.printf("Ton héro est mort tu peux recommencer une partie !\n\n");
+            System.out.print("Ton héro est mort tu peux recommencer une partie !\n\n");
         }
     }
 }

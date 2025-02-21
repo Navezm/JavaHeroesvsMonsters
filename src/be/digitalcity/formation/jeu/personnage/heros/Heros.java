@@ -1,46 +1,47 @@
 package be.digitalcity.formation.jeu.personnage.heros;
 
 import be.digitalcity.formation.jeu.personnage.Personnage;
-import be.digitalcity.formation.jeu.personnage.monstres.Dragonnet;
-import be.digitalcity.formation.jeu.personnage.monstres.Loup;
-import be.digitalcity.formation.jeu.personnage.monstres.Orque;
+import be.digitalcity.formation.jeu.personnage.monstres.*;
 import be.digitalcity.formation.jeu.utilitaire.Cuir;
 import be.digitalcity.formation.jeu.utilitaire.Loots;
-import be.digitalcity.formation.jeu.utilitaire.Or;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Heros extends Personnage implements Loots {
 
-    private List<Loots> sacADos = new ArrayList<>();
+    private final List<Loots> sacADos = new ArrayList<>();
 
-    public List<Loots> getSacADos() {
-//        switch (loot) {
-//            case "Cuir":
-//                sacADos.stream()
-//                        .reduce(Cuir)
-//        }
-        return sacADos;
+    public void getContenuSacADos() {
+        int nombreCuir = 0;
+        int nombreOr = 0;
+        for (Loots loot: sacADos) {
+            if (loot instanceof Cuir) {
+                nombreCuir ++;
+            } else {
+                nombreOr ++;
+            }
+        }
+        System.out.printf("Ton sac à dos contient %d Cuir et %d Or\n", nombreCuir, nombreOr);
     }
 
     public void rest() {
         this.pv = this.getEndurance() + modificateur(this.getEndurance());
-        System.out.printf("Ton héro s'est reposé il est maintenant full PV !\n");
+        System.out.printf("Ton héro s'est reposé il a maintenant %d PV !\n", this.pv);
     }
 
     public void ramasserLoot(Personnage monstre){
         if (monstre instanceof Loup){
-            sacADos.add(((Cuir)monstre));
-            System.out.println("Bravo tu as récupéré " + ((Cuir)monstre).getCuir() + " cuir !");
+            sacADos.addAll(((Loup)monstre).getCuir());
+            System.out.println("Bravo tu as récupéré " + ((Loup)monstre).getCuir().size() + " cuir !");
         } else if (monstre instanceof Orque){
-            sacADos.add((Or)monstre);
-            System.out.println("Bravo tu as récupéré " + ((Or)monstre).getOr() + " or !");
+            sacADos.addAll(((Orque)monstre).getOr());
+            System.out.println("Bravo tu as récupéré " + ((Orque)monstre).getOr().size() + " or !");
         } else {
-            sacADos.add(((Or)monstre));
-            sacADos.add(((Cuir)monstre));
-            System.out.println("Bravo tu as récupéré " + ((Or)monstre).getOr() + " or !");
-            System.out.println("Bravo tu as récupéré " + ((Cuir)monstre).getCuir() + " cuir !");
+            sacADos.addAll((((Dragonnet)monstre)).getOr());
+            sacADos.addAll((((Dragonnet)monstre)).getCuir());
+            System.out.println("Bravo tu as récupéré " + ((Dragonnet)monstre).getOr().size() + " or !");
+            System.out.println("Bravo tu as récupéré " + ((Dragonnet)monstre).getCuir().size() + " cuir !");
         }
     }
 
