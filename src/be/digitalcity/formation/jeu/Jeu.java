@@ -6,7 +6,6 @@ import be.digitalcity.formation.jeu.personnage.heros.Humain;
 import be.digitalcity.formation.jeu.personnage.heros.Nain;
 import be.digitalcity.formation.jeu.utilitaire.Plateau;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Jeu {
@@ -56,7 +55,7 @@ public class Jeu {
                 if (heros.getX() == 14) {
                     System.out.println("Vous ne pouvez plus aller à droite");
                 } else {
-                    plateau.enleverMonstre(heros.getX(), heros.getY());
+                    plateau.enleverPersonnage(heros.getX(), heros.getY());
                     heros.setX(heros.getX() + 1);
                     plateau.plateau[heros.getX()][heros.getY()] = heros;
                 }
@@ -65,7 +64,7 @@ public class Jeu {
                 if (heros.getX() == 0) {
                     System.out.println("Vous ne pouvez plus aller à gauche");
                 } else {
-                    plateau.enleverMonstre(heros.getX(), heros.getY());
+                    plateau.enleverPersonnage(heros.getX(), heros.getY());
                     heros.setX(heros.getX() - 1);
                     plateau.plateau[heros.getX()][heros.getY()] = heros;
                 }
@@ -74,7 +73,7 @@ public class Jeu {
                 if (heros.getY() == 0) {
                     System.out.println("Vous ne pouvez plus aller en haut");
                 } else {
-                    plateau.enleverMonstre(heros.getX(), heros.getY());
+                    plateau.enleverPersonnage(heros.getX(), heros.getY());
                     heros.setY(heros.getY() - 1);
                     plateau.plateau[heros.getX()][heros.getY()] = heros;
                 }
@@ -83,7 +82,7 @@ public class Jeu {
                 if (heros.getY() == 14) {
                     System.out.println("Vous ne pouvez plus aller en bas");
                 } else {
-                    plateau.enleverMonstre(heros.getX(), heros.getY());
+                    plateau.enleverPersonnage(heros.getX(), heros.getY());
                     heros.setY(heros.getY() + 1);
                     plateau.plateau[heros.getX()][heros.getY()] = heros;
                 }
@@ -165,7 +164,7 @@ public class Jeu {
             throw new RuntimeException(e);
         }
         if (monstre.getPv() <= 0) {
-            plateau.enleverMonstre(monstre.getX(), monstre.getY());
+            plateau.enleverPersonnage(monstre.getX(), monstre.getY());
             plateau.retirerUnMonstre();
         }
         if (heros.getPv() <= 0){

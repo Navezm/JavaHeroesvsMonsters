@@ -9,6 +9,7 @@ import java.util.Random;
 public class Plateau {
 
     int nombreMonstre = 0;
+
     public Personnage[][] plateau = new Personnage[15][15];
 
     Random rand = new Random();
@@ -45,7 +46,7 @@ public class Plateau {
         System.out.println("Nombre de monstres : " + nombreMonstre);
     }
 
-    public void enleverMonstre(int X, int Y) {
+    public void enleverPersonnage(int X, int Y) {
         plateau[X][Y] = null;
     }
 
